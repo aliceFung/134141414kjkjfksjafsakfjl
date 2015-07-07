@@ -47,7 +47,7 @@ class BattleBot
     raise Exception if self.weapon.nil?
     raise ArgumentError unless opponent.class == BattleBot
     opponent.take_damage(self.weapon.damage)
-    opponent.enemies(self)
+    opponent.enemies=(self)
   end
 
   def take_damage(damage)
@@ -55,7 +55,9 @@ class BattleBot
     self.dead?
   end
 
-  def enemies(attacker = nil)
+  protected
+
+  def enemies=(attacker = nil)
     @enemies << attacker unless @enemies.include?(attacker)
     @enemies -= [nil]
   end
