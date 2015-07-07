@@ -21,13 +21,11 @@ class BattleBot
     @name = name
     @health = health
     @weapon = weapon
-    dead?
-    #@@count ||= 0
     @@count += 1
     @enemies = []
   end
 
-  def dead?
+  def dead? #count specs ignored: did not add @@count -= 1
     @health > 0 ? false : true
   end
 
@@ -55,13 +53,14 @@ class BattleBot
     self.dead?
   end
 
+
+
   protected
 
   def enemies=(attacker = nil)
     @enemies << attacker unless @enemies.include?(attacker)
     @enemies -= [nil]
   end
-
 
 
 end
